@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-Vagrant.require_version ">= 1.4.3"
+Vagrant.require_version ">= 1.8.5"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if ENV["KONG_PATH"]
@@ -24,12 +24,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     version = "0.9.2"
   end
 
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = true
+  end
+
   config.vm.provider :virtualbox do |vb|
    vb.name = "vagrant_kong"
    vb.memory = memory
   end
 
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.synced_folder source, "/kong"
 

@@ -9,8 +9,8 @@ echo "Installing Kong version: $KONG_VERSION"
 # Install Postgres
 sudo apt-get update
 sudo apt-get install -y software-properties-common python-software-properties
-sudo add-apt-repository "deb https://apt.postgresql.org/pub/repos/apt/ precise-pgdg main"
-wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - 
+sudo add-apt-repository "deb https://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y postgresql-9.5
 
@@ -26,13 +26,13 @@ sudo /etc/init.d/postgresql restart
 # Create PG user and database
 psql -U postgres <<EOF
 \x
-CREATE USER kong; 
+CREATE USER kong;
 CREATE DATABASE kong OWNER kong;
 EOF
 
 # Install Kong
 sudo apt-get install -y netcat openssl libpcre3 dnsmasq procps perl
-wget -O kong.deb https://github.com/Mashape/kong/releases/download/$KONG_VERSION/kong-$KONG_VERSION.precise_all.deb
+wget -O kong.deb https://github.com/Mashape/kong/releases/download/$KONG_VERSION/kong-$KONG_VERSION.trusty_all.deb
 sudo dpkg -i kong.deb
 rm kong.deb
 

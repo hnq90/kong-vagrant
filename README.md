@@ -74,8 +74,8 @@ You should receive a JSON response:
 {
   "tagline": "Welcome to Kong",
   "version": "x.x.x",
-  "hostname": "precise64",
-  "lua_version": "LuaJIT 2.1.0-alpha",
+  "hostname": "vagrant-ubuntu-trusty-64",
+  "lua_version": "LuaJIT 2.1.0-beta2",
   "plugins": {
     "enabled_in_cluster": {},
     "available_on_server": [
